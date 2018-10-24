@@ -73,13 +73,9 @@ function PayWithAmazon (opts) {
   this.error = bind(this, this.error);
   this.init = bind(this, this.init);
 
-  if ('OffAmazonPayments' in window) {
+  if ('OffAmazonPayments' in window && window.amazon && window.amazon.Login) {
     this.init();
   } else {
-    document.write('<script src="'
-      + this.getAssetPath()
-      + '"></script>');
-
     window.onAmazonLoginReady = this.init;
   }
 
